@@ -1,4 +1,4 @@
 run-button: >
-  cd /home/damner/code/StudentApi && mvn spring-boot:run
+  cd /home/damner/code/StudentApi && mvn test
 
-playground-view: browser
+playground-view: terminal
