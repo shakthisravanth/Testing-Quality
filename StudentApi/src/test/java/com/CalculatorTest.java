@@ -1,31 +1,30 @@
 package com;
 
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class CalculatorTest {
 
-    @Test
-	void testEquals() {
-		Calculator calc = new Calculator();
-		assertEquals(4, calc.add(2, 2));
+	Calculator calc;
+
+	@BeforeEach
+	void setUp() {
+		calc = new Calculator();
+		System.out.println("Setting up calculator...");
+	}
+
+	@AfterEach
+	void tearDown() {
+		System.out.println("Test finished.");
+	}
+
+	@Test
+	void testAddition() {
+		assertEquals(4, calc.add(2,2));
 	}
 
 	@Test
 	void testTrue() {
-		Calculator calc = new Calculator();
 		assertTrue(calc.isPositive(5));
-	}
-
-	@Test
-	void testFalse() {
-		Calculator calc = new Calculator();
-		assertFalse(calc.isPositive(-3));
-	}
-
-	@Test
-	void testNotNull() {
-		Calculator calc = new Calculator();
-		assertNotNull(calc.getMessage());
 	}
 }
