@@ -1,27 +1,33 @@
 package com;
 
 import org.junit.jupiter.api.*;
+import org.mockito.Mockito;
+
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
 
 public class StudentServiceTest {
 
+	StudentRepository repository;
 	StudentService service;
 
 	@BeforeEach
 	void setUp() {
-		service = new StudentService();
+		repository = Mockito.mock(StudentRepository.class);
+		service = new StudentService(repository);
 	}
 
 	@Test
 	void testAddStudent() {
 		service.addStudent("Ravi");
-		assertEquals(1, service.getStudentCount());
+		verify(repository).save("Ravi");
 	}
 
 	@Test
-	void testMultipleStudents() {
-		service.addStudent("Ravi");
-		service.addStudent("Anita");
-		assertEquals(2, service.getStudentCount());
+	void testStudentCount() {
+		when(repository.count()).thenReturn(5);
+		int count = service.getStudentCount();
+		assertEquals(5, count);
 	}
+	
 }

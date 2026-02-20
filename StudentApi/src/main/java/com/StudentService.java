@@ -1,17 +1,18 @@
 package com;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class StudentService {
 
-	private List<String> students = new ArrayList<>();
+	private StudentRepository repository;
+
+	public StudentService(StudentRepository repository) {
+		this.repository = repository;
+	}
 
 	public void addStudent(String name) {
-		students.add(name);
+		repository.save(name);
 	}
 
 	public int getStudentCount() {
-		return students.size();
+		return repository.count();
 	}
 }
